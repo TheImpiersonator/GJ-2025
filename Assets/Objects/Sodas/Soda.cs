@@ -29,13 +29,13 @@ public abstract class Soda : MonoBehaviour
     protected int MaxShakeLevel;    //Max amount of Levels ups the soda has
     public int shakeLevel;          //The current
 
-    public void Shoot();
-    public void Throw();
-    public void Shake();
+    public void Shoot() { }
+    public void Throw() { }
+    public void Shake() { }
 
     protected virtual void ShootEffect() { 
         
-    };
+    }
 
     protected virtual void ExplodeEffect() { 
         

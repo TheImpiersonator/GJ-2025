@@ -16,5 +16,5 @@ public class SodaPickUp : MonoBehaviour
         Spin();
     }
 
-
+    void Spin() { }
 }
