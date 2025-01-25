@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -14,16 +15,20 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerPawn : Pawn {
-
+    //built in character controller
     private CharacterController unityController;
+    //vectors for player movement
     private Vector3 vertVector;
     private Vector3 horizVector;
     private Vector3 turnVector;
-    private float lerpTime;
+    //vectors for the movement smoothing
+    private Vector3 currentSpeed;
+    private Vector3 currentVelocity;
 
     [Tooltip("Restrains vertical movement by percentage during strafes")]
     [SerializeField] float strafeRestraint; //Added for hidden strafing speed mechaninc
-    [SerializeField] float smoothness;
+    [Tooltip("Amount of time for character to accelerate to full speed")]
+    [SerializeField] float accelTime;
 
     void Start() {
         unityController = GetComponent<CharacterController>();
@@ -31,7 +36,7 @@ public class PlayerPawn : Pawn {
 
     void Update() {
         //vector for pawn movement
-        Vector3 moveVector;
+        Vector3 moveVector = Vector3.zero;
 
         //reduce vertical move vector when strafing
         if (horizVector.magnitude > 0) {
@@ -45,10 +50,11 @@ public class PlayerPawn : Pawn {
             moveVector = Vector3.Normalize(vertVector + horizVector);
         }
 
-
+        //smoothing the movement vector
+        currentSpeed = Vector3.SmoothDamp(currentSpeed, moveVector, ref currentVelocity, accelTime);
 
         //move player
-        unityController.Move(moveVector * moveSpeed * Time.deltaTime);
+        unityController.SimpleMove(currentSpeed * moveSpeed);
 
         //rotate player
         transform.Rotate(turnVector * turnSpeed * Time.deltaTime);
@@ -67,11 +73,4 @@ public class PlayerPawn : Pawn {
     public override void RotatePawn(float rotDir) {
         turnVector = new Vector3(0, rotDir, 0);
     }
-
-    private Vector3 SmoothMovement(Vector3 inVec) {
-        Vector3 workingVec = Vector3.zero;
-
-        return workingVec;
-    }
-
 }

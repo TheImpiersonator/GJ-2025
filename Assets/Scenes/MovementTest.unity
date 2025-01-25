@@ -809,7 +809,7 @@ MonoBehaviour:
   turnSpeed: 150
   controller: {fileID: 787430689}
   strafeRestraint: 0.8
-  smoothness: 0
+  accelTime: 0.085
 --- !u!1 &1571271568
 GameObject:
   m_ObjectHideFlags: 0
