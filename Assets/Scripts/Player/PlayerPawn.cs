@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -61,7 +59,7 @@ public class PlayerPawn : Pawn {
     }
 
     public override void MoveVertical(float moveDir) {
-        //using forward direciton * decided movement float
+        //using forward direciton * provided movement float
         vertVector = moveDir * transform.forward;
     }
 
