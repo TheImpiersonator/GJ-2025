@@ -724,8 +724,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  turnSpeed: 100
+  turnSpeed: 150
   controller: {fileID: 787430689}
+  strafeRestraint: 0.8
 --- !u!136 &1325882295
 CapsuleCollider:
   m_ObjectHideFlags: 0
