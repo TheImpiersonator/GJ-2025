@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerController : Controller {
 
     private void Start() {
@@ -30,6 +31,7 @@ public class PlayerController : Controller {
         if (pawn != null) {
             //read value from input manager
             Vector2 moveValue = context.ReadValue<Vector2>();
+
             //if forwards/backwards
             if (Mathf.Abs(moveValue.y) > 0) {
                 pawn.MoveVertical(moveValue.y);
