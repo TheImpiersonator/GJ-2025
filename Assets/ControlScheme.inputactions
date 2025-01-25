@@ -1,5 +1,5 @@
 {
-    "name": "New Controls",
+    "name": "ControlScheme",
     "maps": [
         {
             "name": "Player",
@@ -9,7 +9,7 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "a6e1688a-cfbb-4478-8b49-57c1fd4fd33d",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
