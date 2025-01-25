@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : Controller {
 
-    public InputAction move;
-
     private void Start() {
         //check if we have a GameManager
         if (GameManager.Instance != null) {
@@ -16,7 +14,6 @@ public class PlayerController : Controller {
                 GameManager.Instance.player = this;
             }
         }
-        move.Enable();
     }
     public void OnDestroy() {
         //check if we have a GameManager
@@ -29,22 +26,21 @@ public class PlayerController : Controller {
         }
     }
 
-    private void Update() {
-        ProcessInputs();
-    }
-
-    private void ProcessInputs() {
+    public void ProcessInputs(InputAction.CallbackContext context) {
         if (pawn != null) {
-            Vector2 moveValue = move.ReadValue<Vector2>();
+            //read value from input manager
+            Vector2 moveValue = context.ReadValue<Vector2>();
+            //if forwards/backwards
             if (Mathf.Abs(moveValue.y) > 0) {
-                pawn.MoveVertical(moveValue.y);
-                pawn.MoveHorizontal(0f);
-                pawn.RotatePawn(moveValue.x);
-            }
-            else if (moveValue.y == 0) {
                 pawn.MoveVertical(moveValue.y);
                 pawn.MoveHorizontal(moveValue.x);
                 pawn.RotatePawn(0f);
+            }
+            //rotation if not moving
+            else if (moveValue.y == 0) {
+                pawn.MoveVertical(moveValue.y);
+                pawn.MoveHorizontal(0f);
+                pawn.RotatePawn(moveValue.x);
             }
         }
     }

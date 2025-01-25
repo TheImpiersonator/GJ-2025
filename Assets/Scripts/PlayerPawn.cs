@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -15,21 +16,25 @@ public class PlayerPawn : Pawn {
     }
 
     void Update() {
-        Vector3 moveVector = new Vector3(horizVector.x, 0, vertVector.z);
-        unityController.Move(moveVector * Time.deltaTime);
+        //normalized total movment direction
+        Vector3 moveVector = Vector3.Normalize(vertVector + horizVector);
+        //move player
+        unityController.Move(moveVector * moveSpeed * Time.deltaTime);
+        //rotate player
         transform.Rotate(turnVector * turnSpeed * Time.deltaTime);
     }
 
     public override void MoveVertical(float moveDir) {
-        vertVector = new Vector3(0, 0, Mathf.Clamp(moveDir, -1, 1));
-        vertVector = transform.InverseTransformDirection(vertVector);
+        //using forward direciton * provided input float
+        vertVector = moveDir * transform.forward;
     }
 
     public override void MoveHorizontal(float moveDir) {
-        horizVector = new Vector3(Mathf.Clamp(moveDir, -1, 1), 0, 0);
+        //using right direciton * provided input float
+        horizVector = moveDir * transform.right;
     }
 
     public override void RotatePawn(float rotDir) {
-        turnVector = new Vector3(0, Mathf.Clamp(rotDir, -1, 1), 0);
+        turnVector = new Vector3(0, rotDir, 0);
     }
 }
