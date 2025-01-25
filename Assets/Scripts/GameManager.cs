@@ -17,7 +17,5 @@ public class GameManager : MonoBehaviour {
         else {
             Destroy(gameObject);
         }
-        //limit FPS
-        Application.targetFrameRate = 60;
     }
 }
