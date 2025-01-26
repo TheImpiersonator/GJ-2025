@@ -14,7 +14,7 @@ public class TileManager : MonoBehaviour
 
     private void Start() {
         if(debugStartActive) {
-            InitiateTile();
+            active = true;
         }
     }
     public void InitiateTile() {
