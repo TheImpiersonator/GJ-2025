@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(CharacterController))]
 public class AIPawn : Pawn {
@@ -34,11 +35,6 @@ public class AIPawn : Pawn {
         //using right direciton * provided input float
         horizVector = moveDir * transform.right;
     }
-
-    public override void RotatePawn(float rotDir) {
-        //shouldnt be used for AI
-        throw new System.NotImplementedException();
-    }
     public override void RotateTowards(Vector3 targetPosition) {
         //vector pointing at target
         Vector3 vectorToTarget = targetPosition - transform.position;
@@ -46,5 +42,19 @@ public class AIPawn : Pawn {
         Quaternion targetRotation = Quaternion.LookRotation(vectorToTarget, Vector3.up);
         //rotation for pawn to move to
         turnVector = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+    }
+
+    public override void Dash(Vector2 direction) {
+        //not used in AI
+        throw new System.NotImplementedException();
+    }
+    public override void RotatePawn(float rotDir) {
+        //not used for AI
+        throw new System.NotImplementedException();
+    }
+
+    public override void Teleport(Vector3 newLocation) {
+        //wont be used since only player teleports
+        throw new System.NotImplementedException();
     }
 }

@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 2355488617733901576}
   - component: {fileID: 121169623102562165}
   - component: {fileID: 8433015576038210648}
+  - component: {fileID: 4510021998238126076}
   m_Layer: 0
   m_Name: BasicEnemy
   m_TagString: Untagged
@@ -161,6 +162,20 @@ MonoBehaviour:
   moveSpeed: 1
   turnSpeed: 65
   controller: {fileID: 0}
+--- !u!114 &4510021998238126076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4217879720308418020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a22bea8dfba13a4782a88d7519e36cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
 --- !u!1 &8147830210916753928
 GameObject:
   m_ObjectHideFlags: 0

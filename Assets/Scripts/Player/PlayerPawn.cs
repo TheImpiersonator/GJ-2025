@@ -71,9 +71,19 @@ public class PlayerPawn : Pawn {
     public override void RotatePawn(float rotDir) {
         turnVector = new Vector3(0, rotDir, 0);
     }
+    public override void Dash(Vector2 direction) {
+        //not done yet
+    }
 
     public override void RotateTowards(Vector3 targetPosition) {
         //shouldnt be used for player
         throw new System.NotImplementedException();
+    }
+
+    public override void Teleport(Vector3 newLocation) {
+        //have to disable the player controller before and after the teleport, otherwise it will override the change
+        unityController.enabled = false;
+        this.transform.position = newLocation;
+        unityController.enabled = true;
     }
 }

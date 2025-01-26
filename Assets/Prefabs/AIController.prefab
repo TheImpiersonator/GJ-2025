@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pawn: {fileID: 0}
   viewAngle: 35
-  viewDistance: 10
+  viewDistance: 15
   currentState: 4
   target: {fileID: 0}
