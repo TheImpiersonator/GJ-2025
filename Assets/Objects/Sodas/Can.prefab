@@ -310,7 +310,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   levelSets:
-  - damage: 5
+  - damage: 15
     shootRange: 15
     spread: 30
     fireRate: 1

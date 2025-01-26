@@ -75,7 +75,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1501799633436652288}
         m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
-        m_MethodName: ProcessInputs
+        m_MethodName: ProcessMovement
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -103,6 +103,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4f1dd54e-70fb-4a86-a489-272a6219a58d
     m_ActionName: 'Player/Move1[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3285276471966584050, guid: 867ca761ed8452c4ca375032a70a6ace, type: 3}
+        m_TargetAssemblyTypeName: PlayerPawn, Assembly-CSharp
+        m_MethodName: UseSoda
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: SodaQueueSystem, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 81e03e52-653a-40d7-87ce-a221514baa2e
+    m_ActionName: 'Player/Shoot[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
