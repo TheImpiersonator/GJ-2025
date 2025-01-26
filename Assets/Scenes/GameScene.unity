@@ -882,6 +882,12 @@ MonoBehaviour:
   player: {fileID: 0}
   levelTiles: []
   ais: []
+  score: 0
+  is_GamePaused: 1
+  mainMenuUIPrefab: {fileID: 0}
+  HUDPrefab: {fileID: 0}
+  gameOverUIPrefab: {fileID: 0}
+  WinUIPrefab: {fileID: 0}
 --- !u!4 &1393800014
 Transform:
   m_ObjectHideFlags: 0
@@ -1191,6 +1197,7 @@ MonoBehaviour:
   moveSpeed: 10
   turnSpeed: 150
   controller: {fileID: 1619214202}
+  healthSystem: {fileID: 0}
   strafeRestraint: 0.8
   accelTime: 0.085
 --- !u!143 &2127441019
