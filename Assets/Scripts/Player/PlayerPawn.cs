@@ -16,7 +16,6 @@ public class PlayerPawn : Pawn {
     //built in character controller
     private CharacterController unityController;
     [ SerializeField] HealthComponent healthSystem;
-    [SerializeField] SodaQueueSystem sodaQueue;
 
     //vectors for player movement
     private Vector3 vertVector;
@@ -95,14 +94,7 @@ public class PlayerPawn : Pawn {
         unityController.enabled = true;
     }
 
-    public void UseSoda() {
-        Debug.Log("Using Soda w/ count " + sodaQueue.gameObject);
-        if (GetComponent<SodaQueueSystem>().get_Queue().Count > 0)
-        {
-            Debug.Log("PLEASE WORK OMG PLES");
-            GetComponent<SodaQueueSystem>().get_Queue()[0].Shoot();
-            GetComponent<SodaQueueSystem>().RemoveSoda();
-        }
-        else { Debug.LogWarning("No Soda available"); }
+    public void UseSoda(SodaQueueSystem sodaQueue) {
+        sodaQueue.get_Soda().Shoot();
     }
 }

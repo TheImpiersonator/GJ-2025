@@ -4170,7 +4170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6586004957458676876, guid: 09e9f9d8b8976c749acae458347f52eb, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6586004957458676876, guid: 09e9f9d8b8976c749acae458347f52eb, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -4193,8 +4193,12 @@ PrefabInstance:
       value: PlayerPawn, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6586004957458676876, guid: 09e9f9d8b8976c749acae458347f52eb, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8107724787737576726}
+    - target: {fileID: 6586004957458676876, guid: 09e9f9d8b8976c749acae458347f52eb, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: SodaQueueSystem, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9024528606594107732, guid: 09e9f9d8b8976c749acae458347f52eb, type: 3}
       propertyPath: m_LocalPosition.x

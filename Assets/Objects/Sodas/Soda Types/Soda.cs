@@ -58,8 +58,15 @@ public abstract class Soda : MonoBehaviour
 
 
     //====| METHODS |====
-    public void Shoot() {
-        Debug.Log("SPLOOOOOOOOOSHHH!!!");
+    public void Shoot(Vector3 foward) {
+        //GIVE THE SHOOT METHOD THE FORWARD VECTOR
+        foward.Normalize();
+        RaycastHit hit;
+        //SEE IF A RAY CAST HITS BASED ON THE SHOOT RANGE
+        Vector3 castVect =  foward * levelSets[0].shootRange;
+        
+        //THE REST IS UP TO YOU PIERSON YU GOT THIS!!! o7
+
         ShootEffect();
     }
     public void Throw() { }
