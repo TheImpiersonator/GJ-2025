@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6222206730325233128}
   - component: {fileID: 7738686351393149483}
   - component: {fileID: 2445908322266005171}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 119
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 3836072713442813052}
   - component: {fileID: 6893462429292787901}
   - component: {fileID: 4371852001009304534}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 2595739263896158078}
   - component: {fileID: 8797592675981522599}
   - component: {fileID: 5846397724506258708}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,8 @@ GameObject:
   - component: {fileID: 2054514211291325957}
   - component: {fileID: 2415874067667002403}
   - component: {fileID: 3285276471966584050}
-  m_Layer: 0
+  - component: {fileID: 5572680080538849949}
+  m_Layer: 6
   m_Name: PlayerPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,3 +342,17 @@ MonoBehaviour:
   controller: {fileID: 0}
   strafeRestraint: 0.8
   accelTime: 0.085
+--- !u!114 &5572680080538849949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524254116083503137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a22bea8dfba13a4782a88d7519e36cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0

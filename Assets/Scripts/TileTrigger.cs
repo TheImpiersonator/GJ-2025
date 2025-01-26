@@ -22,8 +22,6 @@ public class TileTrigger : MonoBehaviour
         Pawn player = GameManager.Instance.player.pawn;
         //dont want AI or projectiles messing with this
         if (other == player.gameObject.GetComponent<CharacterController>()) {
-            //toggle tile state
-            manager.ToggleTile();
             //for acting as a teleporter also
             if (teleportTrigger) {
                 //if not prevented from teleporting
@@ -36,6 +34,12 @@ public class TileTrigger : MonoBehaviour
                     player.Teleport(new Vector3(basePos.x, basePos.y, teleportRef.transform.position.z));
                 }
             }
+            else {
+                if(!waitTillExit) {
+                    //toggle tile state
+                    manager.InitiateTile();
+                }
+            }
         }
     }
 
@@ -44,6 +48,9 @@ public class TileTrigger : MonoBehaviour
         Pawn player = GameManager.Instance.player.pawn;
         //dont want AI or projectiles messing with this
         if (other == player.gameObject.GetComponent<CharacterController>()) {
+            if (!teleportTrigger) {
+                manager.ResetTile();
+            }
             //enable teleporting on triggered
             waitTillExit = false;
         }

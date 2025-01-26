@@ -36,6 +36,8 @@ public abstract class Soda : MonoBehaviour
     [Tooltip("Add a new set to include a new Level (stat set) to the Soda")]
     [SerializeField] List<sodaStats> levelSets = new List<sodaStats>();
 
+    private float totalTimer;
+    private float intervalCounter;
 
     //___Shake
     [SerializeField] float Max_ShakeAmount;
@@ -53,7 +55,9 @@ public abstract class Soda : MonoBehaviour
 
 
     //====| UNITY SCHEDULE |=====
-
+    private void Update() {
+        
+    }
     //====| METHODS |====
     public void Shoot() {
         ShootEffect();

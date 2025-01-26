@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
 
     public PlayerController player;
     public TileManager[] levelTiles;
+    public List<Pawn> ais;
 
     private void Awake() {
         //if we dont have an instance, make one

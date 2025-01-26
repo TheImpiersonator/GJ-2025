@@ -18,8 +18,10 @@ public class TileManager : MonoBehaviour
         }
     }
     public void InitiateTile() {
+        GameManager.Instance.ais.Clear();
         foreach (Spawner spawner in AISpawns) {
             spawner.ActivateSpawner();
+            GameManager.Instance.ais.Add(spawner.spawnedObject.GetComponent<Pawn>());
         }
         foreach (Spawner spawner in ItemSpawns) {
             spawner.ActivateSpawner();
