@@ -95,6 +95,8 @@ public class PlayerPawn : Pawn {
     }
 
     public void UseSoda(SodaQueueSystem sodaQueue) {
-        sodaQueue.get_Soda().Shoot(transform.forward);
+        if (sodaQueue.currSoda != null) {
+            sodaQueue.get_Soda().Shoot(transform.forward);
+        }
     }
 }

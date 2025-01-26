@@ -1,6 +1,9 @@
 using UnityEngine.Events;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
+using System.Runtime.CompilerServices;
 
 public abstract class Soda : MonoBehaviour
 {
@@ -44,7 +47,7 @@ public abstract class Soda : MonoBehaviour
     //___Shake
     [SerializeField] float Max_ShakeAmount;
     float curr_ShakeAmount;
-    public int shakeLevel;          //The current Level of the Soda
+    public int shakeLevel = 0;          //The current Level of the Soda
     public enum FIZZ_RANKS {Stale, Carbonated, FIZZED}; //RANK OF THE SODA Based on Shame Amount [Should effect the Explosion stats]
     public FIZZ_RANKS fizzRank = FIZZ_RANKS.Stale;      //Current Fizz Ranking
 
@@ -59,13 +62,29 @@ public abstract class Soda : MonoBehaviour
 
     //====| METHODS |====
     public void Shoot(Vector3 foward) {
+        Pawn player = GameManager.Instance.player.pawn;
+        //store all ai from game manager
+        Pawn[] aiPawns = GameManager.Instance.ais.ToArray();
         //GIVE THE SHOOT METHOD THE FORWARD VECTOR
         foward.Normalize();
         RaycastHit hit;
-        //SEE IF A RAY CAST HITS BASED ON THE SHOOT RANGE
-        Vector3 castVect =  foward * levelSets[0].shootRange;
-        
-        //THE REST IS UP TO YOU PIERSON YU GOT THIS!!! o7
+        foreach (var ai in aiPawns) {
+            if (ai != null) {
+                //SEE IF A RAY CAST HITS BASED ON THE SHOOT RANGE
+                Vector3 castVect = ai.gameObject.transform.position - player.gameObject.transform.position;
+                //angle between the facing direction and the vector to the target
+                float angleToTarget = Vector3.Angle(castVect, player.gameObject.transform.forward);
+                //cast ray to AI
+                Physics.Raycast(player.gameObject.transform.position, castVect, out hit, levelSets[shakeLevel].shootRange);
+                Debug.DrawRay(player.gameObject.transform.position, castVect * levelSets[shakeLevel].shootRange, Color.green, 3f);
+                //damage AI if it hits them
+                if (hit.collider != null) {
+                    if (hit.collider.gameObject == ai.gameObject && angleToTarget <= levelSets[shakeLevel].spread) {
+                        ai.gameObject.GetComponent<HealthComponent>().TakeDamage(levelSets[shakeLevel].damage);
+                    }
+                }
+            }
+        }
 
         ShootEffect();
     }
@@ -110,6 +129,9 @@ public abstract class Soda : MonoBehaviour
 
     public float get_ShakePercent() {
         return Mathf.Clamp01(curr_ShakeAmount/Max_ShakeAmount);
+    }
+    public void UpdateShakeAmount(float changeValue) {
+        curr_ShakeAmount += changeValue;
     }
     public GameObject get_Prefab()
     {
