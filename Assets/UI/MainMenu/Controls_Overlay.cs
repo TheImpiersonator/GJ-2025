@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class Controls_Overlay : UI_Overlay
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] MainMenu_Overlay mainmenuUIPrefab;
 
-    // Update is called once per frame
-    void Update()
+    public void pressed_Back()
     {
-        
+        GameManager.Instance.get_UIMaster().OpenOverlay<MainMenu_Overlay>(mainmenuUIPrefab.gameObject);
     }
 }
