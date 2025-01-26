@@ -11,7 +11,7 @@ public class AIController : Controller
     public float viewDistance;
     [Tooltip("Current action of the AI's state machine")]
     public enum AIState {Idle, Chase, Patrol, Seek, ChooseTarget};
-    public AIState currentState;
+    public AIState currentState = AIState.ChooseTarget;
 
     public GameObject target;
 
@@ -19,7 +19,9 @@ public class AIController : Controller
     private Vector3 randomPos = Vector3.zero;
 
     void Update() {
-        ProcessAI();
+        if (pawn != null) {
+            ProcessAI();
+        }
     }
 
     private void ProcessAI() {
