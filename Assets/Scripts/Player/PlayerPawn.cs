@@ -15,7 +15,8 @@ using UnityEngine;
 public class PlayerPawn : Pawn {
     //built in character controller
     private CharacterController unityController;
-    HealthComponent healthSystem;
+    [ SerializeField] HealthComponent healthSystem;
+    [SerializeField] SodaQueueSystem sodaQueue;
 
     //vectors for player movement
     private Vector3 vertVector;
@@ -33,9 +34,10 @@ public class PlayerPawn : Pawn {
     void Start()
     {
         unityController = GetComponent<CharacterController>();
-        healthSystem = GetComponent<HealthComponent>();
 
+        //If PLayer dies, End the Game
         healthSystem.OnDeath += GameManager.Instance.Start_GameOver;
+
     }
 
     void Update() {
@@ -91,5 +93,16 @@ public class PlayerPawn : Pawn {
         unityController.enabled = false;
         this.transform.position = newLocation;
         unityController.enabled = true;
+    }
+
+    public void UseSoda() {
+        Debug.Log("Using Soda w/ count " + sodaQueue.gameObject);
+        if (GetComponent<SodaQueueSystem>().get_Queue().Count > 0)
+        {
+            Debug.Log("PLEASE WORK OMG PLES");
+            GetComponent<SodaQueueSystem>().get_Queue()[0].Shoot();
+            GetComponent<SodaQueueSystem>().RemoveSoda();
+        }
+        else { Debug.LogWarning("No Soda available"); }
     }
 }

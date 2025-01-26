@@ -263,6 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8848259424804152557}
   - component: {fileID: 9049261153511168976}
+  - component: {fileID: -2409753798079986672}
   m_Layer: 0
   m_Name: Can
   m_TagString: Untagged
@@ -298,6 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 920b991a500d76847a603b18066cc575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sodaPrefab: {fileID: 3626400949750236519}
   OnShoot:
     m_PersistentCalls:
       m_Calls: []
@@ -307,17 +309,45 @@ MonoBehaviour:
   OnExplode:
     m_PersistentCalls:
       m_Calls: []
-  statSets:
+  levelSets:
   - damage: 5
-    shootRange: 20
-    spread: 35
+    shootRange: 15
+    spread: 30
     fireRate: 1
-    useDuration: 5
-    throwStrength: 15
-    throwAngle: 25
-    explodeDistance: 5
-  currShakePercent: 0
+    useDuration: 8
+    throwStrength: 50
+    throwAngle: 15
+    explodeDistance: 20
+  Max_ShakeAmount: 0
   shakeLevel: 0
+  fizzRank: 0
+--- !u!54 &-2409753798079986672
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3626400949750236519}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6833641417831472404
 GameObject:
   m_ObjectHideFlags: 0

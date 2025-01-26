@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Soda : MonoBehaviour
 {
+    [SerializeField] GameObject sodaPrefab;
+
     //====| EVENTS |==== //SOME EVENTS MAY HAVE TO BE TURNED INTO DELEGATES IF NEEDED SUBSCRIPTIONS
     public UnityEvent OnShoot;
     public UnityEvent OnDrink;
@@ -54,12 +56,10 @@ public abstract class Soda : MonoBehaviour
     }
 
 
-    //====| UNITY SCHEDULE |=====
-    private void Update() {
-        
-    }
+
     //====| METHODS |====
     public void Shoot() {
+        Debug.Log("SPLOOOOOOOOOSHHH!!!");
         ShootEffect();
     }
     public void Throw() { }
@@ -103,5 +103,9 @@ public abstract class Soda : MonoBehaviour
 
     public float get_ShakePercent() {
         return Mathf.Clamp01(curr_ShakeAmount/Max_ShakeAmount);
+    }
+    public GameObject get_Prefab()
+    {
+        return sodaPrefab;
     }
 }

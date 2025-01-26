@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class SodaQueueSystem : MonoBehaviour
 {
-    [SerializeField] List<Soda> queue;
+    [SerializeField] List<Soda> queue = new List<Soda>();
     [SerializeField] int MaxQueueCount = 6;
+    [SerializeField] Transform spawnTransform;
 
-    private Soda currSoda;
+    public Soda currSoda;
 
     //LOOK FOR SODA PICKUPS
     private void OnTriggerEnter(Collider other)
@@ -22,7 +23,11 @@ public class SodaQueueSystem : MonoBehaviour
 
 
     void EquipSoda(Soda soda) {
+        if (soda == null) return;
+        
         currSoda = soda;
+
+        Instantiate(currSoda.get_Prefab(), spawnTransform);
 
         currSoda.OnDurationEnd += RemoveSoda;
         currSoda.OnThrow += RemoveSoda;
@@ -30,11 +35,13 @@ public class SodaQueueSystem : MonoBehaviour
 
     /*Adds a Soda to the Soda Queue*/
     public void AddSoda(Soda soda) {
+        
         if (queue.Count+1 > MaxQueueCount) return; //GUARD: Queue Too Full
         
         queue.Add(soda);
-
-        if (queue.Count == 1) {
+        Debug.Log(queue.Count);
+        
+        if (queue.Count <= 1) {
             EquipSoda(queue[0]);
         }
     }
@@ -52,6 +59,7 @@ public class SodaQueueSystem : MonoBehaviour
 
     /*Get the list of Soda class references in the queue*/
     public List<Soda> get_Queue() {
+        Debug.Log(queue);
         return queue;
     }
     /*Get the Soda that's at the top of the list*/

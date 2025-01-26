@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 8797592675981522599}
   - component: {fileID: 5846397724506258708}
   m_Layer: 6
-  m_Name: Cube
+  m_Name: Soda childPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,7 +205,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.4, y: 0.36400002, z: 0.792}
-  m_LocalScale: {x: 0.24, y: 0.19, z: 1}
+  m_LocalScale: {x: 0.060396, y: 0.0478135, z: 0.06294018}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2054514211291325957}
@@ -272,8 +272,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2054514211291325957}
   - component: {fileID: 2415874067667002403}
-  - component: {fileID: 3285276471966584050}
   - component: {fileID: 5572680080538849949}
+  - component: {fileID: 1809433893798797634}
+  - component: {fileID: 3285276471966584050}
   m_Layer: 6
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -325,23 +326,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3285276471966584050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8524254116083503137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d8eeeab89f064a4b86bfc1f7322b26a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  turnSpeed: 150
-  controller: {fileID: 0}
-  strafeRestraint: 0.8
-  accelTime: 0.085
 --- !u!114 &5572680080538849949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -356,3 +340,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+--- !u!114 &1809433893798797634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524254116083503137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1a0041cd0c00b4d9fa1cc86cbc6519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  queue: []
+  MaxQueueCount: 6
+  spawnTransform: {fileID: 2595739263896158078}
+  currSoda: {fileID: 0}
+--- !u!114 &3285276471966584050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524254116083503137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8eeeab89f064a4b86bfc1f7322b26a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  turnSpeed: 150
+  controller: {fileID: 1501799633436652288, guid: 09e9f9d8b8976c749acae458347f52eb, type: 3}
+  healthSystem: {fileID: 5572680080538849949}
+  sodaQueue: {fileID: 1809433893798797634}
+  strafeRestraint: 0.8
+  accelTime: 0.085
