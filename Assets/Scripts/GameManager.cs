@@ -19,10 +19,4 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-
-    private void Start() {
-        foreach (var tile in levelTiles) {
-            tile.InitiateTile();
-        }
-    }
 }

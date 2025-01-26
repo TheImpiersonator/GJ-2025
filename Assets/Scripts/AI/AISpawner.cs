@@ -8,10 +8,11 @@ using UnityEngine;
 public class AISpawner : Spawner {
     [Tooltip("The controller to spawn with the AI character prefab")]
     [SerializeField] private GameObject controllerPrefab;
-    [Tooltip("How much to offset the prefab when it is spawned")]
-    [SerializeField] private Vector3 spawnOffset;
 
     private GameObject spawnedController;
+
+    [SerializeField] private Color debugColor = Color.white;
+    [SerializeField] private Vector3 cubeSize = new Vector3(1, 1, 1);
 
     private void Start() {
         spawnedController = Object.Instantiate(controllerPrefab, transform);
@@ -26,5 +27,10 @@ public class AISpawner : Spawner {
         spawnedObject = Object.Instantiate(spawnPrefab, transform.position + spawnOffset, transform.rotation);
         //link controller up with pawn
         spawnedController.GetComponent<Controller>().pawn = spawnedObject.GetComponent<Pawn>();
+    }
+
+    public void OnDrawGizmos() {
+        Gizmos.color = debugColor;
+        Gizmos.DrawWireCube(transform.position + spawnOffset, cubeSize);
     }
 }

@@ -52,4 +52,9 @@ public class AIPawn : Pawn {
         //not used for AI
         throw new System.NotImplementedException();
     }
+
+    public override void Teleport(Vector3 newLocation) {
+        //wont be used since only player teleports
+        throw new System.NotImplementedException();
+    }
 }

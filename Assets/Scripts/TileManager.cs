@@ -7,6 +7,16 @@ public class TileManager : MonoBehaviour
     public Spawner[] AISpawns;
     public Spawner[] ItemSpawns;
 
+    private bool active = false;
+
+    [Tooltip("This will activate the tile on Start() for debug reasons")]
+    [SerializeField] private bool debugStartActive = false;
+
+    private void Start() {
+        if(debugStartActive) {
+            InitiateTile();
+        }
+    }
     public void InitiateTile() {
         foreach (Spawner spawner in AISpawns) {
             spawner.ActivateSpawner();
@@ -14,6 +24,7 @@ public class TileManager : MonoBehaviour
         foreach (Spawner spawner in ItemSpawns) {
             spawner.ActivateSpawner();
         }
+        active = true;
     }
 
     public void ResetTile() {
@@ -22,6 +33,16 @@ public class TileManager : MonoBehaviour
         }
         foreach (Spawner spawner in ItemSpawns) {
             spawner.ResetSpawner();
+        }
+        active = false;
+    }
+
+    public void ToggleTile() {
+        if (active) {
+            ResetTile();
+        }
+        else {
+            InitiateTile();
         }
     }
 }
