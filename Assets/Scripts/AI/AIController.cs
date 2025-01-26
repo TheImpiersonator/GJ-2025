@@ -16,6 +16,7 @@ public class AIController : Controller
     public GameObject target;
 
     private Vector3 lastTargetPosition;
+    private Vector3 randomPos = Vector3.zero;
 
     void Update() {
         ProcessAI();
@@ -31,27 +32,33 @@ public class AIController : Controller
                 }
                 break;
             case AIState.Chase:
-                if(CanSee()) {
+                //if(CanSee()) {
                     //rotate to face player
                     pawn.RotateTowards(target.transform.position);
                     //move towards player
                     pawn.MoveHorizontal(1f);
                     moving = true;
-                }
+                /*}
                 else {
                     lastTargetPosition = target.transform.position;
-                    ChangeState(AIState.Patrol);
-                }
+                    ChangeState(AIState.Seek);
+                }*/
                 break;
+                /*
             case AIState.Patrol:
-
+                if (pawn.transform.forward == randomPos - pawn.transform.position) {
+                    randomPos = transform.position + new Vector3(Random.Range(0f, 10f), pawn.transform.position.y, Random.Range(0f, 10f));
+                }
+                else {
+                    pawn.RotateTowards(randomPos);
+                }
                 break;
             case AIState.Seek:
                 //going to last position player was seen
                 if(!CanSee()) {
                     //if reached last seen position
                     if((pawn.transform.position - lastTargetPosition).magnitude < 0.1f) {
-                        ChangeState((AIState)AIState.Idle);
+                        ChangeState((AIState)AIState.Patrol);
                     }
                     //rotate to face movement
                     pawn.RotateTowards(lastTargetPosition);
@@ -64,6 +71,7 @@ public class AIController : Controller
                     ChangeState(AIState.Chase);
                 }
                 break;
+                */
             case AIState.ChooseTarget:
                 //this is really only used at the start, to prevent errors
                 TargetPlayer();
@@ -88,7 +96,7 @@ public class AIController : Controller
             if (GameManager.Instance.player != null) {
                 //Then target the gameObject of the pawn of the player controller
                 target = GameManager.Instance.player.pawn.gameObject;
-                ChangeState(AIState.Idle);
+                ChangeState(AIState.Chase);
             }
         }
     }

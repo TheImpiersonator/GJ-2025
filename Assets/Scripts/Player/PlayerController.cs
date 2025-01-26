@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 
 public class PlayerController : Controller {
-
     private void Start() {
         //check if we have a GameManager
         if (GameManager.Instance != null) {
@@ -43,6 +42,16 @@ public class PlayerController : Controller {
                 pawn.MoveVertical(moveValue.y);
                 pawn.MoveHorizontal(0f);
                 pawn.RotatePawn(moveValue.x);
+            }
+        }
+    }
+
+    public void DashTap(InputAction.CallbackContext context) {
+        if (pawn != null) {
+            //read value from input manager
+            Vector2 moveValue = context.ReadValue<Vector2>();
+            if (context.performed) {
+                pawn.Dash(moveValue);
             }
         }
     }

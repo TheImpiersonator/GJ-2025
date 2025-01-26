@@ -15,5 +15,6 @@ public abstract class Pawn : MonoBehaviour
     public abstract void MoveVertical(float moveDir);
     public abstract void MoveHorizontal(float moveDir);
     public abstract void RotatePawn(float rotDir);
+    public abstract void Dash(Vector2 direction);
     public abstract void RotateTowards(Vector3 targetPosition);
 }
