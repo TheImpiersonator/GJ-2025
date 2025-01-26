@@ -307,15 +307,15 @@ MonoBehaviour:
   OnExplode:
     m_PersistentCalls:
       m_Calls: []
-  sodaPrefab: {fileID: 3626400949750236519}
-  damage: 5
-  shootRange: 10
-  spread: 10
-  fireRate: 1
-  useDuration: 3
-  throwStrength: 20
-  throwAngle: 25
-  explodeDistance: 5
+  statSets:
+  - damage: 5
+    shootRange: 20
+    spread: 35
+    fireRate: 1
+    useDuration: 5
+    throwStrength: 15
+    throwAngle: 25
+    explodeDistance: 5
   currShakePercent: 0
   shakeLevel: 0
 --- !u!1 &6833641417831472404
