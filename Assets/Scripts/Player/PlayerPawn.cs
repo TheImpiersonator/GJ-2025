@@ -15,6 +15,8 @@ using UnityEngine;
 public class PlayerPawn : Pawn {
     //built in character controller
     private CharacterController unityController;
+    [ SerializeField] HealthComponent healthSystem;
+
     //vectors for player movement
     private Vector3 vertVector;
     private Vector3 horizVector;
@@ -28,8 +30,13 @@ public class PlayerPawn : Pawn {
     [Tooltip("Amount of time for character to accelerate to full speed")]
     [SerializeField] float accelTime;
 
-    void Start() {
+    void Start()
+    {
         unityController = GetComponent<CharacterController>();
+
+        //If PLayer dies, End the Game
+        healthSystem.OnDeath += GameManager.Instance.Start_GameOver;
+
     }
 
     void Update() {
@@ -85,5 +92,9 @@ public class PlayerPawn : Pawn {
         unityController.enabled = false;
         this.transform.position = newLocation;
         unityController.enabled = true;
+    }
+
+    public void UseSoda(SodaQueueSystem sodaQueue) {
+        sodaQueue.get_Soda().Shoot(transform.forward);
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,7 +24,7 @@ public class PlayerController : Controller {
         }
     }
 
-    public void ProcessInputs(InputAction.CallbackContext context) {
+    public void ProcessMovement(InputAction.CallbackContext context) {
         if (pawn != null) {
             //read value from input manager
             Vector2 moveValue = context.ReadValue<Vector2>();

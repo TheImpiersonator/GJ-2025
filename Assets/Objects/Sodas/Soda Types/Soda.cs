@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class Soda : MonoBehaviour
 {
+    [SerializeField] GameObject sodaPrefab;
+
     //====| EVENTS |==== //SOME EVENTS MAY HAVE TO BE TURNED INTO DELEGATES IF NEEDED SUBSCRIPTIONS
     public UnityEvent OnShoot;
     public UnityEvent OnDrink;
@@ -54,12 +56,17 @@ public abstract class Soda : MonoBehaviour
     }
 
 
-    //====| UNITY SCHEDULE |=====
-    private void Update() {
-        
-    }
+
     //====| METHODS |====
-    public void Shoot() {
+    public void Shoot(Vector3 foward) {
+        //GIVE THE SHOOT METHOD THE FORWARD VECTOR
+        foward.Normalize();
+        RaycastHit hit;
+        //SEE IF A RAY CAST HITS BASED ON THE SHOOT RANGE
+        Vector3 castVect =  foward * levelSets[0].shootRange;
+        
+        //THE REST IS UP TO YOU PIERSON YU GOT THIS!!! o7
+
         ShootEffect();
     }
     public void Throw() { }
@@ -103,5 +110,9 @@ public abstract class Soda : MonoBehaviour
 
     public float get_ShakePercent() {
         return Mathf.Clamp01(curr_ShakeAmount/Max_ShakeAmount);
+    }
+    public GameObject get_Prefab()
+    {
+        return sodaPrefab;
     }
 }

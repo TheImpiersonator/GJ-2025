@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
+    public delegate void DeathEventCall();
+    public DeathEventCall OnDeath;
+    public delegate void DamagedEventCall();
+    public DamagedEventCall OnDamaged;
+    public delegate void HealedEventCall();
+    public HealedEventCall OnHeal;
+
     public float maxHealth;
     public float currentHealth;
 
@@ -22,6 +29,7 @@ public class HealthComponent : MonoBehaviour
         if (currentHealth <= 0) {
             Die();
         }
+        OnDamaged?.Invoke();
     }
     public void Heal(float healing) {
         //increase health
@@ -30,8 +38,10 @@ public class HealthComponent : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         //debug healing
         Debug.Log(gameObject.name + " healed for " + healing + " points.");
+        OnHeal?.Invoke();
     }
     public void Die() {
+        OnDeath?.Invoke();
         Destroy(this.gameObject);
     }
 
