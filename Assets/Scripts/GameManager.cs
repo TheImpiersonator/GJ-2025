@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     public static GameManager Instance;
@@ -41,18 +42,21 @@ public class GameManager : MonoBehaviour {
 
     public void Start_MainMenu()
     {
-        //Restart Level
-        //Switch UI to Main Menu
-        masterUI.SwitchOverlay<MainMenu_Script>(mainMenuUIPrefab.gameObject);
-        //disable 
-        is_GamePaused = true;
+        if (SceneManager.GetActiveScene().name == "Main Menu") {
+            //Restart Level
+            //Switch UI to Main Menu
+            masterUI.SwitchOverlay<MainMenu_Script>(mainMenuUIPrefab.gameObject);
+            //disable 
+            is_GamePaused = true;
+        }
     }
-    public void StartGame()
-    {
-        masterUI.SwitchOverlay<HUDScript>(HUDPrefab.gameObject);
+    public void StartGame() {
+        if (SceneManager.GetActiveScene().name == "Main Menu") {
+            masterUI.SwitchOverlay<HUDScript>(HUDPrefab.gameObject);
 
-        is_GamePaused = false;
-        //Initialize the Game
+            is_GamePaused = false;
+            //Initialize the Game
+        }
     }
 
     public void Start_GameOver()
