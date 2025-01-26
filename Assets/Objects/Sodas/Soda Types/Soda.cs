@@ -1,4 +1,5 @@
 using UnityEngine.Events;
+using System.Collections;
 using UnityEngine;
 
 public abstract class Soda : MonoBehaviour
@@ -6,8 +7,10 @@ public abstract class Soda : MonoBehaviour
     //====| EVENTS |====
     public UnityEvent OnShoot;
     public UnityEvent OnDrink;
-    public UnityEvent OnPickUp;
-    public UnityEvent OnThrow;
+    public delegate void DurationEndCall();
+    public DurationEndCall OnDurationEnd;
+    public delegate void ThrowCall();
+    public ThrowCall OnThrow;
     public UnityEvent OnExplode;
 
     //====| VARIABLES |====
