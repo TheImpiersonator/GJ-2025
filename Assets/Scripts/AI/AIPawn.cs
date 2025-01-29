@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController))] //Required to have a Character Controller
 public class AIPawn : Pawn {
     //built in character controller
     private CharacterController unityController;
@@ -13,6 +9,16 @@ public class AIPawn : Pawn {
     private Vector3 horizVector;
     private Quaternion turnVector;
 
+    //AI stats
+    [SerializeField] int scoreReward = 0; //Score for killing the enemy
+
+    private void Awake()
+    {
+        HealthComponent healthSystem = GetComponent<HealthComponent>();
+
+        healthSystem.OnDeath += GrantReward;
+        healthSystem.OnDeath += Despawn;
+    }
     void Start() {
         unityController = GetComponent<CharacterController>();
     }
@@ -26,6 +32,8 @@ public class AIPawn : Pawn {
         //rotate pawn
         transform.rotation = turnVector;
     }
+    
+    /*KINEMATICS*/
     public override void MoveHorizontal(float moveDir) {
         //using forward direciton * provided movement float
         vertVector = moveDir * transform.forward;
@@ -56,5 +64,15 @@ public class AIPawn : Pawn {
     public override void Teleport(Vector3 newLocation) {
         //wont be used since only player teleports
         throw new System.NotImplementedException();
+    }
+
+    /* =====| Actions |=====*/
+    /* Despawns/Destroys the pawn */
+    void Despawn() {
+        Destroy(gameObject); //Destroy self
+    }
+    /*Grant the reward of the pawn to the Game Manager's score*/
+    void GrantReward() {
+        GameManager.Instance.AdjustScore(scoreReward);
     }
 }

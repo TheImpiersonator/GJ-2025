@@ -8,6 +8,6 @@ public class Win_Overlay : UI_Overlay
 
 
     void UpdateScore() {
-        scoreTxt.text = GameManager.Instance.score.ToString();
+        scoreTxt.text = GameManager.Instance.Get_Score().ToString();
     }
 }

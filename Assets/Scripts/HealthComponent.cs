@@ -42,9 +42,11 @@ public class HealthComponent : MonoBehaviour
     }
     public void Die() {
         OnDeath?.Invoke();
-        Destroy(this.gameObject);
     }
 
+    public float get_HealthPercent() { 
+        return  currentHealth/maxHealth;
+    }
     private void OnParticleCollision(GameObject other) {
         TakeDamage(1f);
     }
