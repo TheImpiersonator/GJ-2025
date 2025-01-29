@@ -11,13 +11,17 @@ public class PrefabPlacementTool : MonoBehaviour
 {
     /*=====| TOOL SETTINGS |=====*/
     [SerializeField] GameObject meshPrefab; // The mesh prefab to place
+    [SerializeField] Texture2D texture;
 
     //___Placement Area/Count
+    [SerializeField] int meshCount = 10; // Number of meshes for count-based placement
     [SerializeField] bool useVolume = true; // Toggle between volume-based or count-based placement
     [SerializeField] Vector3 placementVolume = new Vector3(10f, 0f, 10f); // Size of the placement area
-    [SerializeField] int meshCount = 10; // Number of meshes for count-based placement
+
 
     //___Spacing
+    [SerializeField] float density;         
+    [SerializeField] bool placementSnap;
     [SerializeField] Vector3 meshSpacing = new Vector3(1f, 0f, 1f); // Spacing between meshes
 
     //___Rotation
@@ -97,6 +101,7 @@ public class PrefabPlacementTool : MonoBehaviour
                 InstantiateChild(position, rotation);
             }
         }
+        
     }
 
     Quaternion GetRotation()
@@ -120,6 +125,9 @@ public class PrefabPlacementTool : MonoBehaviour
         {
             obj.AddComponent<BoxCollider>();
         }
+        if(obj.GetComponent<Renderer>() && texture != null){ 
+            Renderer renderer = obj.GetComponent<Renderer>();
+            renderer.material.mainTexture = texture;
+        }
     }
-
 }
