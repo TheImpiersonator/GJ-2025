@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
         /*=====| EVENT SUBSCRIPTIONS |=====*/
         OnGameStart += StartRoundTimer;
         OnTimerDone += StopRoundTimer;
-        OnTimerDone += ProcessEndRound();
+        OnTimerDone += ProcessEndRound;
 
     }
 
@@ -124,26 +124,14 @@ public class GameManager : MonoBehaviour
     //Starts the Game Over Level*/
     public void Start_GameOver()
     {
-        //Open the Lose Level
-
-        /*= OR =
-            //Reload Level
-            //Open the Lose Screen
-            UIMaster.SwitchOverlay<GameOver_Script>(GameOverUIPrefab.gameObject);
-        */
+        SceneManager.LoadSceneAsync(5);
 
 
     }
     //Starts the Win Level*/
     public void Start_WinScreen()
     {
-        //Open the Win Level
-
-        /*= OR =
-            //Reload Level
-            //Open the Win Screen
-            UIMaster.SwitchOverlay<Win_Overlay>(winUIPrefab.gameObject);
-        */
+        SceneManager.LoadSceneAsync(4);
     }
 
     public UIManager get_UIMaster() { return masterUI; }
@@ -179,7 +167,7 @@ public class GameManager : MonoBehaviour
             timeLeft -= Time.deltaTime; //Remove the time it took from in between frames
             OnTimerUpdate?.Invoke(timeLeft); //Invoke Time update Event
         }
-        Debug.Log("TIMER DONE!");
+
         OnTimerDone?.Invoke(); //Invoke the Timer is done
     }
 }
