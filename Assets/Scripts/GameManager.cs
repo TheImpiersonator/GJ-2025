@@ -60,8 +60,8 @@ public class GameManager : MonoBehaviour
 
         /*=====| EVENT SUBSCRIPTIONS |=====*/
         OnGameStart += StartRoundTimer;
-        OnTimerDone += StopRoundTimer;
-        OnTimerDone += ProcessEndRound;
+        OnTimerDone += StopRoundTimer;  //Multicast
+        OnTimerDone += ProcessEndRound; //Multicast
 
     }
 

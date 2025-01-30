@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class HealthComponent : MonoBehaviour
 {
+    /*Death Delegate*/
     public delegate void DeathEventCall();
     public DeathEventCall OnDeath;
+    /*Damaged Delegate*/
     public delegate void DamagedEventCall();
     public DamagedEventCall OnDamaged;
+    /*Heal Delegate*/
     public delegate void HealedEventCall();
     public HealedEventCall OnHeal;
 
@@ -27,9 +30,9 @@ public class HealthComponent : MonoBehaviour
 
         //if health is zero, then die
         if (currentHealth <= 0) {
-            Die();
+            Die(); //Call die method
         }
-        OnDamaged?.Invoke();
+        OnDamaged?.Invoke(); //INVOKE DAMAGE EVENT
     }
     public void Heal(float healing) {
         //increase health
@@ -41,7 +44,7 @@ public class HealthComponent : MonoBehaviour
         OnHeal?.Invoke();
     }
     public void Die() {
-        OnDeath?.Invoke();
+        OnDeath?.Invoke(); //INVOKES DEATH EVENT
     }
 
     public float get_HealthPercent() { 

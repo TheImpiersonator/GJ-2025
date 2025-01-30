@@ -3302,7 +3302,7 @@ MonoBehaviour:
   - {fileID: 732944488}
   ais: []
   score: 0
-  roundDuration: 10
+  roundDuration: 60
   timeLeft: 0
   mainMenuUIPrefab: {fileID: 0}
   HUDPrefab: {fileID: 319988531}

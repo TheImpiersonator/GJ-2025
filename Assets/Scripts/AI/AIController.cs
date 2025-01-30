@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 
 public class AIController : Controller
@@ -7,33 +8,48 @@ public class AIController : Controller
     [Tooltip("Max distance that the AI can see the player at")]
     public float viewDistance;
     [Tooltip("Current action of the AI's state machine")]
-    public enum AIState { Idle, Chase, Patrol, Seek, ChooseTarget };
+    public enum AIState { Idle, Chase, ChooseTarget };
     StateMachine<AIState> stateMachine = new StateMachine<AIState>(AIState.ChooseTarget); //Make a state machine with the initial state of finding the player
 
-    public GameObject target;
+    public GameObject target; //AI's target reference 
 
     private Vector3 lastTargetPosition;
     private Vector3 randomPos = Vector3.zero;
 
     /*SENSE THRESHOLDS*/
+    Thread decisionThread;  //Thread Referencefor basic sensory updates
+
     [SerializeField] float awarenessDistance = 15f;
+
+
+    private void Start()
+    {
+        /* Attach method to the senses thread
+        decisionThread = new Thread(ProcessDecisionThread);
+        decisionThread.IsBackground = true; // Make sure the thread ends when the application ends
+        decisionThread.Start(); //begin the senses thread*/
+    }
 
     void Update()
     {
+        //If there's a pawn set for the controller
         if (pawn != null)
         {
-            ProcessAI();
+            ProcessAI(); //Process the AI Decisions
         }
     }
 
     private void ProcessAI()
     {
+        //Debug.Log($"AI state: {stateMachine.GetState()}");
+
+        //FSM using the statemachine current state
         switch (stateMachine.GetState())
         {
             case AIState.Idle:
                 pawn.MoveHorizontal(0f);
                 // Check for transitions
-                if (CanSee() && isWithinRange_Transform(target.transform, awarenessDistance))
+                if (CanSee())
                 {
                     stateMachine.ChangeState(AIState.Chase);
                 }
@@ -44,6 +60,11 @@ public class AIController : Controller
                 //move towards player
                 pawn.MoveHorizontal(1f);
 
+                //Loses awareness of the target
+                if (!isWithinRange_Transform(target.transform, awarenessDistance))
+                {
+                    stateMachine.ChangeState(AIState.Idle);
+                }
                 break;
             /*
         case AIState.Patrol:
@@ -100,6 +121,7 @@ public class AIController : Controller
     }
     private bool CanSee()
     {
+        if (target == null) { return false; } //No Target to see
         //vector from this to the target
         Vector3 targetVector = target.transform.position - pawn.transform.position;
         //angle between the facing direction and the vector to the target
@@ -133,11 +155,12 @@ public class AIController : Controller
         return false;
     }
 
+
     //Returns if the distance of a target is within a specific range threshold to this game object
     bool isWithinRange_Transform(Transform targetTransform, float rangeLimit)
     {
         //Get the vector in between the target and this gameobject
-        Vector3 distanceVector = targetTransform.position - transform.position;
+        Vector3 distanceVector = targetTransform.position - pawn.transform.position;
 
         return distanceVector.magnitude < rangeLimit; // returns wether the magnitude of the distance vector is within the threshold
     }
